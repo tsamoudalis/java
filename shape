@@ -1,0 +1,56 @@
+// Example interface
+interface Shape {
+    // Abstract method (implicitly public and abstract)
+    double calculateArea();
+
+    // Constant variable (implicitly public, static, and final)
+    double PI = 3.14159;
+
+    // Default method (Java 8 and later)
+    default void displayInfo() {
+        System.out.println("This is a shape.");
+    }
+
+    // Static method (Java 8 and later)
+    static void printStaticInfo() {
+        System.out.println("Static method in the Shape interface.");
+    }
+}
+
+// Class implementing the Shape interface
+class Circle implements Shape {
+    // Implementation of the abstract method
+    @Override
+    public double calculateArea() {
+        // Using the constant variable from the interface
+        return PI * Math.pow(radius, 2);
+    }
+
+    // Additional instance variable
+    private double radius;
+
+    // Constructor
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    // Overriding the default method (optional)
+    @Override
+    public void displayInfo() {
+        System.out.println("This is a circle with radius " + radius);
+    }
+}
+
+public class InterfaceExample {
+    public static void main(String[] args) {
+        // Creating an object of the Circle class
+        Circle circle = new Circle(5.0);
+
+        // Using methods from the Shape interface
+        System.out.println("Area of the circle: " + circle.calculateArea());
+        circle.displayInfo();
+
+        // Using static method from the Shape interface
+        Shape.printStaticInfo();
+    }
+}
